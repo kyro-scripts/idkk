@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubHub - Free Subdomains</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect x="4" y="4" width="24" height="24" rx="6" fill="url(#logo-gradient)"/>
+                    <path d="M12 16L15 19L20 13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="4" y1="4" x2="28" y2="28">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>SubHub</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#browse" class="nav-link">Browse</a>
+                <a href="#contribute" class="nav-link">Contribute</a>
+                <a href="#docs" class="nav-link">Docs</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span>Free & Open Source</span>
+            </div>
+            <h1 class="hero-title">
+                Claim Your Free
+                <span class="gradient-text">Subdomain</span>
+            </h1>
+            <p class="hero-subtitle">
+                Get up to 5 free subdomains instantly. No credit card required.
+                <br>Perfect for developers, students, and side projects.
+            </p>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="subdomain-input" 
+                        placeholder="Enter subdomain (e.g., myapp, blog, api)..."
+                        autocomplete="off"
+                    >
+                    <div class="domain-selector">
+                        <select id="domain-select">
+                            <option value="subhub.dev">.subhub.dev</option>
+                            <option value="free.io">.free.io</option>
+                            <option value="mysite.app">.mysite.app</option>
+                            <option value="dev.zone">.dev.zone</option>
+                            <option value="cloud.link">.cloud.link</option>
+                        </select>
+                    </div>
+                    <button class="search-btn" id="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Check
+                    </button>
+                </div>
+
+                <!-- Advanced Options -->
+                <div class="advanced-search">
+                    <button class="advanced-toggle" id="advanced-toggle">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M2 8h12M8 2v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Advanced Options
+                    </button>
+                    <div class="advanced-panel" id="advanced-panel">
+                        <div class="advanced-grid">
+                            <div class="advanced-field">
+                                <label>Record Type</label>
+                                <select id="quick-record-type">
+                                    <option value="A">A - IPv4 Address</option>
+                                    <option value="AAAA">AAAA - IPv6 Address</option>
+                                    <option value="CNAME">CNAME - Domain Alias</option>
+                                    <option value="URL">URL - HTTP Redirect</option>
+                                </select>
+                                <span class="field-hint" id="record-hint">Point to an IPv4 address</span>
+                            </div>
+                            <div class="advanced-field">
+                                <label>Destination</label>
+                                <input type="text" id="quick-destination" placeholder="192.168.1.1 or example.com">
+                                <span class="field-hint">IP address or domain name</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mass Search -->
+                <div class="mass-search-section">
+                    <button class="mass-search-toggle" id="mass-search-toggle">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <rect x="2" y="2" width="5" height="5" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="9" y="2" width="5" height="5" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="2" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="9" y="9" width="5" height="5" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        Bulk Search Subdomains
+                    </button>
+                    <div class="mass-search-panel" id="mass-search-panel">
+                        <p class="mass-search-desc">Check multiple subdomains at once. Enter one subdomain per line.</p>
+                        <textarea id="mass-search-input" placeholder="myapp&#10;blog&#10;api&#10;dashboard&#10;admin" rows="6"></textarea>
+                        <div class="mass-search-actions">
+                            <button class="mass-search-btn" id="mass-search-btn">
+                                Check All Subdomains
+                            </button>
+                            <span class="mass-search-count" id="mass-search-count">0 subdomains</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="availability-results" id="availability-results"></div>
+                <div class="mass-results" id="mass-results"></div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number">12,453</div>
+                    <div class="stat-label">Active Subdomains</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2,891</div>
+                    <div class="stat-label">Happy Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">48</div>
+                    <div class="stat-label">Available Domains</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="browse" class="browse-section">
+            <div class="section-header">
+                <h2 class="section-title">Browse Available Domains</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="popular">Popular</button>
+                    <button class="filter-tab" data-filter="new">New</button>
+                </div>
+            </div>
+
+            <div class="domains-grid" id="domains-grid">
+                <!-- Domain cards will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="contribute" class="contribute-section">
+            <div class="contribute-card">
+                <div class="contribute-header">
+                    <h2>Contribute a Domain</h2>
+                    <p>Share your domain with the community and help others get started</p>
+                </div>
+                <form class="contribute-form" id="contribute-form">
+                    <div class="form-group">
+                        <label for="domain-name">Domain Name</label>
+                        <input 
+                            type="text" 
+                            id="domain-name" 
+                            placeholder="example.com"
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="dns-provider">DNS Provider</label>
+                        <select id="dns-provider" required>
+                            <option value="">Select provider...</option>
+                            <option value="cloudflare">Cloudflare</option>
+                            <option value="route53">AWS Route 53</option>
+                            <option value="namecheap">Namecheap</option>
+                            <option value="godaddy">GoDaddy</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Contact Email</label>
+                        <input 
+                            type="email" 
+                            id="contact-email" 
+                            placeholder="your@email.com"
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Submit Domain
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="docs" class="docs-section">
+            <div class="docs-header">
+                <h2 class="section-title">Documentation</h2>
+                <p class="docs-subtitle">Everything you need to know about using SubHub</p>
+            </div>
+
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="6" y="6" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 16h8M12 20h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Getting Started</h3>
+                    <p>Learn how to claim your first free subdomain in under 2 minutes.</p>
+                    <div class="doc-steps">
+                        <div class="doc-step">
+                            <strong>1.</strong> Enter your desired subdomain name
+                        </div>
+                        <div class="doc-step">
+                            <strong>2.</strong> Select a domain from the dropdown
+                        </div>
+                        <div class="doc-step">
+                            <strong>3.</strong> Click "Check" to see availability
+                        </div>
+                        <div class="doc-step">
+                            <strong>4.</strong> Configure DNS settings and claim
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 12v8M12 16h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>DNS Record Types</h3>
+                    <p>Understanding different DNS record types and when to use them.</p>
+                    <div class="record-types-list">
+                        <div class="record-type-item">
+                            <div class="record-type-badge">A</div>
+                            <div class="record-type-info">
+                                <strong>A Record</strong>
+                                <span>Maps to IPv4 address (e.g., 192.168.1.1)</span>
+                            </div>
+                        </div>
+                        <div class="record-type-item">
+                            <div class="record-type-badge">AAAA</div>
+                            <div class="record-type-info">
+                                <strong>AAAA Record</strong>
+                                <span>Maps to IPv6 address (e.g., 2001:db8::1)</span>
+                            </div>
+                        </div>
+                        <div class="record-type-item">
+                            <div class="record-type-badge">CNAME</div>
+                            <div class="record-type-info">
+                                <strong>CNAME Record</strong>
+                                <span>Alias to another domain (e.g., example.com)</span>
+                            </div>
+                        </div>
+                        <div class="record-type-item">
+                            <div class="record-type-badge">URL</div>
+                            <div class="record-type-info">
+                                <strong>URL Redirect</strong>
+                                <span>HTTP redirect to any URL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M8 12l8-6 8 6v12a2 2 0 01-2 2H10a2 2 0 01-2-2V12z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 24V16h8v8" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Use Cases</h3>
+                    <p>Common scenarios for using free subdomains.</p>
+                    <div class="use-cases">
+                        <div class="use-case">
+                            <strong>Development & Testing</strong>
+                            <p>Create dev.yourdomain.com for staging environments</p>
+                        </div>
+                        <div class="use-case">
+                            <strong>Personal Projects</strong>
+                            <p>Host portfolio, blog, or side projects</p>
+                        </div>
+                        <div class="use-case">
+                            <strong>API Endpoints</strong>
+                            <p>Dedicated subdomain for REST APIs</p>
+                        </div>
+                        <div class="use-case">
+                            <strong>Microservices</strong>
+                            <p>Separate subdomains for each service</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="6" y="10" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M6 14h20M10 10V8a2 2 0 012-2h8a2 2 0 012 2v2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Best Practices</h3>
+                    <p>Tips for managing your subdomains effectively.</p>
+                    <div class="best-practices">
+                        <div class="practice-item">
+                            ✓ Use descriptive names (api, blog, admin)
+                        </div>
+                        <div class="practice-item">
+                            ✓ Keep names short and memorable
+                        </div>
+                        <div class="practice-item">
+                            ✓ Use hyphens for multi-word names
+                        </div>
+                        <div class="practice-item">
+                            ✓ Avoid numbers unless necessary
+                        </div>
+                        <div class="practice-item">
+                            ✓ Update DNS within 24-48 hours
+                        </div>
+                        <div class="practice-item">
+                            ✓ Test your subdomain after setup
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 10v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Propagation Times</h3>
+                    <p>Understanding DNS propagation and what to expect.</p>
+                    <div class="propagation-info">
+                        <div class="propagation-item">
+                            <div class="time-badge instant">Instant</div>
+                            <span>Configuration saved in our system</span>
+                        </div>
+                        <div class="propagation-item">
+                            <div class="time-badge fast">5-15 min</div>
+                            <span>Most DNS servers updated</span>
+                        </div>
+                        <div class="propagation-item">
+                            <div class="time-badge normal">1-4 hours</div>
+                            <span>Global propagation complete</span>
+                        </div>
+                        <div class="propagation-item">
+                            <div class="time-badge max">Up to 48h</div>
+                            <span>Maximum time in rare cases</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-card">
+                    <div class="doc-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 6v20M6 16h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Troubleshooting</h3>
+                    <p>Common issues and their solutions.</p>
+                    <div class="troubleshooting">
+                        <div class="trouble-item">
+                            <strong>Q: Subdomain not resolving?</strong>
+                            <p>Wait for DNS propagation (up to 48h). Clear your DNS cache.</p>
+                        </div>
+                        <div class="trouble-item">
+                            <strong>Q: Can't claim more subdomains?</strong>
+                            <p>Free users are limited to 5 subdomains. Delete unused ones.</p>
+                        </div>
+                        <div class="trouble-item">
+                            <strong>Q: Wrong IP address showing?</strong>
+                            <p>Edit your subdomain and update the destination.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-docs">
+                <h3 class="api-title">API Documentation</h3>
+                <p class="api-subtitle">Integrate SubHub into your applications</p>
+                
+                <div class="api-endpoints">
+                    <div class="api-endpoint">
+                        <div class="api-method get">GET</div>
+                        <div class="api-path">/api/check</div>
+                        <div class="api-desc">Check subdomain availability</div>
+                    </div>
+                    <div class="api-code">
+                        <code>curl https://subhub.dev/api/check?subdomain=myapp&domain=subhub.dev</code>
+                    </div>
+
+                    <div class="api-endpoint">
+                        <div class="api-method post">POST</div>
+                        <div class="api-path">/api/claim</div>
+                        <div class="api-desc">Claim a subdomain</div>
+                    </div>
+                    <div class="api-code">
+                        <code>curl -X POST https://subhub.dev/api/claim \<br>  -H "Content-Type: application/json" \<br>  -d '{"subdomain":"myapp","domain":"subhub.dev","type":"A","destination":"192.168.1.1"}'</code>
+                    </div>
+
+                    <div class="api-endpoint">
+                        <div class="api-method get">GET</div>
+                        <div class="api-path">/api/subdomains</div>
+                        <div class="api-desc">List your subdomains</div>
+                    </div>
+                    <div class="api-code">
+                        <code>curl https://subhub.dev/api/subdomains -H "Authorization: Bearer YOUR_TOKEN"</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-subdomains" id="my-subdomains">
+            <div class="section-header">
+                <h2 class="section-title">My Subdomains</h2>
+                <span class="subdomain-count" id="subdomain-count">0/5 used</span>
+            </div>
+            <div class="subdomains-list" id="subdomains-list">
+                <div class="empty-state">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                        <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" opacity="0.3"/>
+                        <path d="M32 20v24M20 32h24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p>No subdomains claimed yet</p>
+                    <span>Search for a subdomain above to get started</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                        <rect x="4" y="4" width="24" height="24" rx="6" fill="url(#footer-logo-gradient)"/>
+                        <path d="M12 16L15 19L20 13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="footer-logo-gradient" x1="4" y1="4" x2="28" y2="28">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#8b5cf6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>SubHub</span>
+                </div>
+                <p>Free subdomain hosting for everyone.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <a href="#browse">Browse Domains</a>
+                    <a href="#contribute">Contribute</a>
+                    <a href="#docs">Documentation</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="#">API</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">License</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 SubHub. Open source and free forever.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for claiming subdomain -->
+    <div class="modal" id="claim-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 class="modal-title">Configure Subdomain</h3>
+            <div class="modal-subdomain" id="modal-subdomain"></div>
+            <form class="modal-form" id="claim-form">
+                <div class="form-group">
+                    <label for="record-type">Record Type *</label>
+                    <select id="record-type" required>
+                        <option value="A">A - IPv4 Address</option>
+                        <option value="AAAA">AAAA - IPv6 Address</option>
+                        <option value="CNAME">CNAME - Domain Alias</option>
+                        <option value="URL">URL - HTTP Redirect</option>
+                    </select>
+                    <span class="form-hint" id="modal-record-hint">Point to an IPv4 address</span>
+                </div>
+                <div class="form-group">
+                    <label for="target-url">Destination *</label>
+                    <input 
+                        type="text" 
+                        id="target-url" 
+                        placeholder="192.168.1.1"
+                        required
+                    >
+                    <span class="form-hint" id="destination-hint">Enter a valid IPv4 address</span>
+                </div>
+                <div class="form-group">
+                    <label for="ttl">TTL (Time To Live)</label>
+                    <select id="ttl">
+                        <option value="300">5 minutes (300s)</option>
+                        <option value="1800">30 minutes (1800s)</option>
+                        <option value="3600" selected>1 hour (3600s)</option>
+                        <option value="14400">4 hours (14400s)</option>
+                        <option value="86400">24 hours (86400s)</option>
+                    </select>
+                    <span class="form-hint">How long DNS servers should cache this record</span>
+                </div>
+                <div class="validation-message" id="validation-message"></div>
+                <button type="submit" class="modal-submit">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M13 4L6 11L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Claim Subdomain
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
